@@ -95,6 +95,7 @@ type
 
     function fFecharAplicacao : Boolean;
     function sohNumeros(const cep: string) : boolean;
+    function teste : boolean;
   public
     { Public declarations }
   end;
@@ -237,6 +238,11 @@ begin
       Break;
     end;
   end;
+end;
+
+function TfrPrincipal.teste: boolean;
+begin
+//
 end;
 
 end.
