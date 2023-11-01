@@ -1,0 +1,16 @@
+program SalesControl;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  uPrincipal in 'uPrincipal.pas' {frPrincipal},
+  uCadastroProduto in 'cadastro\uCadastroProduto.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrPrincipal, frPrincipal);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.
