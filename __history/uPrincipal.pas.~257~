@@ -77,6 +77,8 @@ type
     Button1: TButton;
     btCancelarCadUser: TButton;
     IdHTTP1: TIdHTTP;
+    lbNumero: TLabel;
+    edNumero: TEdit;
     procedure mnSairClick(Sender: TObject);
     procedure mnCadastroClick(Sender: TObject);
     procedure mnConsultaClick(Sender: TObject);
@@ -86,13 +88,14 @@ type
     procedure imgUserClick(Sender: TObject);
     procedure edValorProdutoTyping(Sender: TObject);
     procedure mmCadUserClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure edCepExit(Sender: TObject);
   private
     { Private declarations }
     classeControladora : TClasseControladora;
 
     function fFecharAplicacao : Boolean;
     function sohNumeros(const cep: string) : boolean;
+    function teste : boolean;
   public
     { Public declarations }
   end;
@@ -109,7 +112,7 @@ begin
   classeControladora.LimpaCamposForm;
 end;
 
-procedure TfrPrincipal.Button1Click(Sender: TObject);
+procedure TfrPrincipal.edCepExit(Sender: TObject);
 var
   CEP,
   Response    : string;
@@ -120,20 +123,10 @@ begin
 
   CEP := Trim(edCep.Text);
 
-(*  if (not sohNumeros(CEP)) or (Length(CEP) < 9) then
-  begin
-    MessageDlg('CEP inválido! Verifique se:' + sLineBreak +
-               '1 - O CEP informado possui apenas números.' + sLineBreak +
-               '2 - O CEP informado possui 9 caapenas números.'', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOk], 0);
-    edCep.SetFocus;
-
-    Exit;
-  end;*)
-
   try
     Response := IdHTTP1.Get('https://viacep.com.br/ws/' + CEP + '/json/');
-    ShowMessage('Resposta recebida: ' + Response);
   except
+    MessageDlg('CEP inválido!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOk], 0);
     Exit;
   end;
 
@@ -245,6 +238,11 @@ begin
       Break;
     end;
   end;
+end;
+
+function TfrPrincipal.teste: boolean;
+begin
+//
 end;
 
 end.
