@@ -19,10 +19,10 @@ type
 
      constructor Create(formPrincipal : TForm);
 
-     procedure LimpaCamposForm;
      procedure AtualizaLabelsPrincipal;
-     procedure controlaRetangulos(idRetangulo : integer);
+     procedure controlaRetangulos(tagRetangulo : integer);
      procedure pFazAutenticacaoUser(prUsuario : string; prSenha : string; formLogin: TForm);
+     procedure ControlaCorMenus(tagMenu : Integer);
   end;
 
 implementation
@@ -51,47 +51,46 @@ begin
      TLabel(wLabelValorMensal).Text := GetDadosValorMensal(0);
 end;
 
-procedure TClasseControladora.controlaRetangulos(idRetangulo : integer);
+procedure TClasseControladora.ControlaCorMenus(tagMenu : Integer);
+var
+  wI : Integer;
+begin
+   for wI := 0 to wFormPrincipal.ComponentCount -1 do
+      begin
+        if (wFormPrincipal.Components[wI] is TLabel) then
+           begin
+             if (TLabel(wFormPrincipal.Components[wI]).Tag <> 0) then
+             begin
+               if TLabel(wFormPrincipal.Components[wI]).Tag = tagMenu then
+                  TLabel(wFormPrincipal.Components[wI]).TextSettings.FontColor := $FF32C6FF
+               else
+                  TLabel(wFormPrincipal.Components[wI]).TextSettings.FontColor := $FF9A9191;             
+             end;             
+           end;
+      end;
+end;
+
+procedure TClasseControladora.controlaRetangulos(tagRetangulo : integer);
 var
   wRetanguloConsulta,
   wRetanguloCadastro,
   wRetanguloCadUser  : TComponent;
-begin
-  wRetanguloConsulta := wFormPrincipal.FindComponent('rcConsulta');
-  wRetanguloCadastro := wFormPrincipal.FindComponent('rcCadastro');
-  wRetanguloCadUser  := wFormPrincipal.FindComponent('rcCadUsuario');
 
-  case idRetangulo of
-    1: begin
-         //Cadastro produtos
-         if Assigned(wRetanguloCadastro) then
-            begin
-              TRectangle(wRetanguloCadastro).Visible := true;
-              TRectangle(wRetanguloConsulta).Visible := false;
-              TRectangle(wRetanguloCadUser).Visible  := false;
-            end;
-       end;
-
-    2: begin
-         //Consulta
-         if Assigned(wRetanguloConsulta) then
-            begin
-              TRectangle(wRetanguloConsulta).Visible := true;
-              TRectangle(wRetanguloCadastro).Visible := false;
-              TRectangle(wRetanguloCadUser).Visible  := false;
-            end;
-       end;
-
-    3: begin
-         //Cadastro usuário
-        if Assigned(wRetanguloCadUser) then
+  wI : Integer;
+begin    
+     for wI := 0 to wFormPrincipal.ComponentCount -1 do
+      begin
+        if (wFormPrincipal.Components[wI] is TRectangle) then
            begin
-             TRectangle(wRetanguloCadUser).Visible  := true;
-             TRectangle(wRetanguloCadastro).Visible := false;
-             TRectangle(wRetanguloConsulta).Visible := false;
+             if (TRectangle(wFormPrincipal.Components[wI]).Tag <> 0) then
+             begin
+               if TRectangle(wFormPrincipal.Components[wI]).Tag = tagRetangulo then
+                  TRectangle(wFormPrincipal.Components[wI]).Visible	:= true
+               else
+                  TRectangle(wFormPrincipal.Components[wI]).Visible	:= false;
+             end;             
            end;
-       end;
-  end;
+      end;                                                                   
 end;
 
 constructor TClasseControladora.Create(formPrincipal : TForm);
@@ -116,21 +115,6 @@ end;
 function TClasseControladora.GetDataUltimoLogin: string;
 begin
   result := '  Último login: ' + DateTimeToStr(now);
-end;
-
-procedure TClasseControladora.LimpaCamposForm;
-var
-  wI : Integer;
-begin
-   for wI := 0 to wFormPrincipal.ComponentCount -1 do
-    begin
-       if wFormPrincipal.Components[wI] is TEdit then
-          TEdit(wFormPrincipal.Components[wI]).Text := ''
-       else if wFormPrincipal.Components[wI] is TComboBox then
-          TComboBox(wFormPrincipal.Components[wI]).ItemIndex := -1
-       else if wFormPrincipal.Components[wI] is TMemo then
-          TMemo(wFormPrincipal.Components[wI]).Lines.Text := '';
-    end;
 end;
 
 procedure TClasseControladora.pFazAutenticacaoUser(prUsuario : string; prSenha : string; formLogin: TForm);

@@ -4,9 +4,6 @@ Coordinates=165,346,48,33
 [mnConsulta]
 Coordinates=72,346,73,33
 
-[lbConsultas]
-Coordinates=708,10,73,51
-
 [ltbMenu]
 Coordinates=10,10,116,177
 
@@ -77,9 +74,6 @@ Coordinates=159,10,55,51
 [descProduto]
 Coordinates=192,232,77,33
 
-[dataCompra]
-Coordinates=97,232,74,33
-
 []
 Coordinates=145,80,82,33
 
@@ -91,4 +85,10 @@ Coordinates=289,10,46,51
 
 [lbNomeUsuario]
 Coordinates=609,10,77,51
+
+[dataVenda]
+Coordinates=97,232,74,33
+
+[lbConsultas]
+Coordinates=708,10,73,51
 

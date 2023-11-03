@@ -9,7 +9,12 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, uCadastroProduto,
   FMX.Memo.Types, FMX.DateTimeCtrls, FMX.Memo, FMX.Edit, uClasseControladora,
   FMX.DialogService, FMX.Ani, IdHTTP, REST.Json, IdBaseComponent, IdComponent,
-  IdTCPClient, System.JSON, IdSSLOpenSSL, Character, IdStack, IdTCPConnection;
+  IdTCPClient, System.JSON, IdSSLOpenSSL, Character, IdStack, IdTCPConnection,
+  DBXDevartOracle, Data.FMTBcd, Data.DB, Data.SqlExpr, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.FMXUI.Wait,
+  FireDAC.Comp.Client, FMX.ComboEdit;
 
 type
   TfrPrincipal = class(TForm)
@@ -40,20 +45,19 @@ type
     lbSair: TLabel;
     grListaProdutos: TGrid;
     columnProduto: TStringColumn;
-    dataCompra: TDateColumn;
+    dataVenda: TDateColumn;
     descProduto: TStringColumn;
     valorProduto: TFloatColumn;
     rcCadastro: TRectangle;
     edValorProduto: TEdit;
     mmDescricao: TMemo;
-    cbProdutos: TComboBox;
     Z: TDateEdit;
     lbProdutos: TLabel;
-    lbDataCompra: TLabel;
+    lbDataCadastro: TLabel;
     lbValorProduto: TLabel;
     lbDescricaoProduto: TLabel;
-    btnCancelar: TButton;
-    btnCadastrar: TButton;
+    btnCancelarProd: TButton;
+    btnCadastrarProd: TButton;
     RectAnimation1: TRectAnimation;
     mmCadUser: TListBoxItem;
     lbCadUser: TLabel;
@@ -74,21 +78,38 @@ type
     lbCidade: TLabel;
     Label1: TLabel;
     edUF: TEdit;
-    Button1: TButton;
+    btCadastrarUser: TButton;
     btCancelarCadUser: TButton;
     IdHTTP1: TIdHTTP;
     lbNumero: TLabel;
     edNumero: TEdit;
+    cbProdutos: TComboEdit;
+    mnCadVenda: TListBoxItem;
+    lbCadVenda: TLabel;
+    rcCadVenda: TRectangle;
+    edValorVenda: TEdit;
+    mmDescProdutoVenda: TMemo;
+    cbDataVenda: TDateEdit;
+    lbProdutoVenda: TLabel;
+    lbDataVenda: TLabel;
+    lbValorProdutoVenda: TLabel;
+    lbDescProdutoVenda: TLabel;
+    btCancelarVenda: TButton;
+    btCadastrarVenda: TButton;
+    RectAnimation2: TRectAnimation;
+    cbProdutoVenda: TComboEdit;
     procedure mnSairClick(Sender: TObject);
     procedure mnCadastroClick(Sender: TObject);
     procedure mnConsultaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure imgUserClick(Sender: TObject);
     procedure edValorProdutoTyping(Sender: TObject);
     procedure mmCadUserClick(Sender: TObject);
     procedure edCepExit(Sender: TObject);
+    procedure btCancelarCadUserClick(Sender: TObject);
+    procedure btnCancelarProdClick(Sender: TObject);
+    procedure mnCadVendaClick(Sender: TObject);
   private
     { Private declarations }
     classeControladora : TClasseControladora;
@@ -106,9 +127,16 @@ implementation
 
 {$R *.fmx}
 
-procedure TfrPrincipal.btnCancelarClick(Sender: TObject);
+procedure TfrPrincipal.btCancelarCadUserClick(Sender: TObject);
 begin
-  classeControladora.LimpaCamposForm;
+  classeControladora.controlaRetangulos(rcConsulta.Tag);
+  classeControladora.ControlaCorMenus(lbConsultas.Tag);
+end;
+
+procedure TfrPrincipal.btnCancelarProdClick(Sender: TObject);
+begin
+  classeControladora.controlaRetangulos(rcConsulta.Tag);
+   classeControladora.ControlaCorMenus(lbConsultas.Tag);
 end;
 
 procedure TfrPrincipal.edCepExit(Sender: TObject);
@@ -181,9 +209,10 @@ end;
 procedure TfrPrincipal.FormCreate(Sender: TObject);
 begin
   classeControladora := TClasseControladora.Create(Self);
-  
+
   classeControladora.AtualizaLabelsPrincipal;    
-  classeControladora.controlaRetangulos(2);
+  classeControladora.controlaRetangulos(rcConsulta.Tag);
+  classeControladora.ControlaCorMenus(lbConsultas.Tag);
 end;
 
 procedure TfrPrincipal.imgUserClick(Sender: TObject);
@@ -205,17 +234,26 @@ end;
 
 procedure TfrPrincipal.mmCadUserClick(Sender: TObject);
 begin
-  classeControladora.controlaRetangulos(3);
+  classeControladora.controlaRetangulos(rcCadUsuario.Tag);
+  classeControladora.ControlaCorMenus(lbCadUser.Tag);
 end;
 
 procedure TfrPrincipal.mnCadastroClick(Sender: TObject);
 begin
-  classeControladora.controlaRetangulos(1);
+  classeControladora.controlaRetangulos(rcCadastro.Tag);
+  classeControladora.ControlaCorMenus(lbCadastro.Tag);
+end;
+
+procedure TfrPrincipal.mnCadVendaClick(Sender: TObject);
+begin
+  classeControladora.controlaRetangulos(rcCadVenda.Tag);
+  classeControladora.ControlaCorMenus(lbCadVenda.Tag);
 end;
 
 procedure TfrPrincipal.mnConsultaClick(Sender: TObject);
 begin
-  classeControladora.controlaRetangulos(2);
+  classeControladora.controlaRetangulos(rcConsulta.Tag);
+  classeControladora.ControlaCorMenus(lbConsultas.Tag);
 end;
 
 procedure TfrPrincipal.mnSairClick(Sender: TObject);
