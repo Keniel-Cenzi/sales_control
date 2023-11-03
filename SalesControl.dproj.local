@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/10/27 13:06:09.000.878,=C:\Users\Cenzi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/27 13:06:31.000.726,C:\Users\Cenzi\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Cenzi\Desktop\Controle de vendas\uPrincipal.pas</Transaction>
+    <Transaction>2023/10/27 13:06:31.000.726,C:\Users\Cenzi\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\Cenzi\Desktop\Controle de vendas\uPrincipal.fmx</Transaction>
+    <Transaction>2023/10/27 13:07:17.000.874,C:\Users\Cenzi\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Cenzi\Desktop\Controle de vendas\SalesControl.dproj</Transaction>
+    <Transaction>2023/10/28 10:11:04.000.567,=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas</Transaction>
+    <Transaction>2023/10/28 10:11:24.000.324,C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.fmx=C:\Users\Cenzi\Desktop\Controle de vendas\cadastro\uCadastroProduto.fmx</Transaction>
+    <Transaction>2023/10/28 10:11:24.000.324,C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas=C:\Users\Cenzi\Desktop\Controle de vendas\cadastro\uCadastroProduto.pas</Transaction>
+    <Transaction>2023/10/30 18:33:20.000.273,=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas</Transaction>
+    <Transaction>2023/10/30 18:34:36.000.681,C:\Users\Cenzi\Desktop\Controle de vendas\Classes\uClasseControladora.pas=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas</Transaction>
+    <Transaction>2023/10/31 18:30:27.000.343,=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas</Transaction>
+    <Transaction>2023/10/31 18:30:50.000.020,C:\Users\Cenzi\Desktop\Controle de vendas\uLogin.pas=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.pas</Transaction>
+    <Transaction>2023/10/31 18:30:50.000.020,C:\Users\Cenzi\Desktop\Controle de vendas\uLogin.fmx=C:\Users\Cenzi\Desktop\Controle de vendas\Unit1.fmx</Transaction>
+  </Transactions>
+</BorlandProject>
