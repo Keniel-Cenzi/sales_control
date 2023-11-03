@@ -12,6 +12,6 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(TfrPrincipal, frPrincipal);
+  Application.CreateForm(TfrLogin, frLogin);
   Application.Run;
 end.

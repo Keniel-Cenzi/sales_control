@@ -108,7 +108,7 @@
         <DCC_UnitSearchPath>C:\Users\Cenzi\Desktop\Controle de vendas\Classes;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Icon_MainIcon>SalesControl_Icon1.ico</Icon_MainIcon>
+        <Icon_MainIcon>SalesControl_Icon2.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
